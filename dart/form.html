@@ -1,0 +1,110 @@
+<html>
+   <head>
+      <title>DART</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+	  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+    <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+   </head>
+   <body>
+     <nav class="darkgrey lighten-1" role="navigation">
+       <div class="nav-wrapper container">
+         <a id="logo-container" href="index.html" class="brand-logo">DART</a>
+         <ul class="right hide-on-med-and-down">
+           <li><a href="index.html">Information</a></li>
+           <li><a href="form.html">Find Flights</a></li>
+           <li><a href="#">Contact</a></li>
+         </ul>
+
+         <ul id="nav-mobile" class="side-nav">
+           <li><a href="index.html">Information</a></li>
+           <li><a href="form.html">Find Flights</a></li>
+           <li><a href="#">Contact</a></li>
+         </ul>
+         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+       </div>
+     </nav>
+     <br><br>
+     <!-- <div  class="container"> -->
+      <div class="col">
+         <form class="card-panel white left" style="margin-left: 3%">
+            <div class="row">
+               <div class="input-field col s6">
+                  <i class="material-icons prefix">account_circle</i>
+                  <input placeholder="Username" id="name" type="text" class="active validate">
+                  <label for="name">Username</label>
+               </div> <br><br><br><br>
+               <div class="row">
+                  <div class="input-field col s12">
+                     <input placeholder="Email" id="email" type="email" class="validate">
+                     <label for="email">Email</label>
+                  </div>
+               </div>
+               <div class="row">
+                 <div class="input-field col s6">
+                    <label for="origin">Departure Airport</label>
+                    <input id="origin" type="text" placeholder="IATA code: DEN" name="origin" required>
+                 </div>
+               </div>
+               <div class="row">
+                 <div class="input-field col s6">
+                    <label for="departureDate">Departure Date</label>
+                    <input id="departureDate" type="text" placeholder="yyyy-mm-dd" value="2016-09-22" name="departureDate" required>
+                 </div>
+
+
+                 <div class="input-field col s6">
+                    <label for="duration">Trip Duration</label>
+                    <input id="duration" type="text" placeholder="# of days" value="7" required>
+                 </div>
+               </div>
+            </div>
+
+            <div class="row">
+               <div class="input-field col s12">
+                 <p>Max Price (*required)</p>
+                   <p>
+                     <input id="100" class="priceMax" type="radio" name="priceMax" value="100">
+                     <label for="100">$100</label>
+
+                     <input id="200" class="priceMax" type="radio" name="priceMax" value="200">
+                     <label for="200">$200</label>
+                  </p>
+                  <p>
+                     <input id="300" class="priceMax" type="radio" name="priceMax" value="300">
+                     <label for="300">$300</label>
+
+                     <input id="400" class="priceMax" type="radio" name="priceMax" value="400">
+                     <label for="400">$400</label>
+                  </p>
+                  <p>
+                     <input id="500" class="priceMax" type="radio" name="priceMax" value="500">
+                     <label for="500">$500</label>
+                     <input id="700" class="priceMax" type="radio" name="priceMax" value="700">
+                     <label for="700">$700</label>
+                  </p>
+
+               </div>
+              </div>
+              <br>
+              <button class="btn waves-effect waves-teal right" id="getResults" type="submit">Search</button>
+
+
+         </form>
+
+         <form class="card-panel white left" style="margin-left: 5%">
+            <div class="row" id="results" style="width: 60vw; height: 75vh">
+            <!-- <img src="arnoldLee.jpg" style="max-width:75vw; max-height: 75vh; min-height: 65vh; min-width: 65vh" alt="plane wing"> -->
+            </div>
+          </form>
+
+      <!-- </div> -->
+    </div>
+
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+      <script src="dart.js"></script>
+   </body>
+</html>
