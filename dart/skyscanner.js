@@ -34,18 +34,16 @@ var $link = "http://partners.api.skyscanner.net/apiservices/referral/v1.0/US/USD
 
         var $destinationID = data.Quotes[i]["OutboundLeg"].DestinationId;
         var $destinationName = getIdName(data.Places, $destinationID);
-// console.log($destinationName);
+        var $flightPrice = data.Quotes[i].MinPrice;
 
-        $destination.text("Destination: " + $destinationName).css('padding-top', '2vw');
-        //var $destination = //get request for the name of the destination ID
-        $minPrice.text("Price: $" + data.Quotes[i].MinPrice);
+        $destination.text($destinationName).css({'padding-top': '2vw', 'font-size': '2em'});
 
-        // $results.text("Destination: " + $destination + " " + "Price: $"+
-        // $minPrice  + " ");
+        $minPrice.text("$"+$flightPrice).css({'font-size': '1em'});
 
-        $("#results").append($destination).append($minPrice.append(
+        $("#results").append($destination.append($minPrice.append(
           $("<div/>", {"class": "row s12 m3"})).append($("<a>", {"class": "btn", "href": $link, "text": "Book It"}))
         )
+      )
       }
     });
 });
