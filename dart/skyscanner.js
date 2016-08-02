@@ -16,35 +16,32 @@ var $url = "https://galvanize-cors-proxy.herokuapp.com/http://partners.api.skysc
 //link for the booking refferal
 var $link = "http://partners.api.skyscanner.net/apiservices/referral/v1.0/US/USD/en-GB/" + $origin + "/anywhere/" + $departureDate + "/" + $returnDate + "?apiKey=ga77476197786334&format=json";
 
-// console.log($url);
-// console.log($link);
-
     $.get($url).then(function(data){
 
       for(var i=0; i<3; i++){
         //create new div with styles
         var $results = $("<div />", {
-          "class": "row s12 m3",
-          "style": "padding: 2vw"
-
-          //add event handler attr.data-url: 'link address'
+          "class": "row s12 m3 center",
         });
 
-        var $destination = data.Quotes[i]["OutboundLeg"].DestinationId;
-        //var $destination = //get request for the name of the destination ID
-        var $minPrice = data.Quotes[i].MinPrice;
+        var $destination = $("<div />", {
+          "class": "row s12 m3 center"
+        });
 
-        $results.text("Destination: " + $destination + " " + "Price: $"+
-        $minPrice  + " ");
-        $("#results").append($results.append(
-          $("<div/>", {"class": "row s12 m3"}).append(
-            $("<p/>", {"class": "bookingLink"})
-            )
-          ).append($("<button>", {"class": "btn", "href": $link, "text": "Book It"}))
+        var $minPrice = $("<div />", {
+          "class": "row s12 m3 center"
+        });
+
+        $destination.text("Destination: " + data.Quotes[i]["OutboundLeg"].DestinationId).css('padding-top', '2vw');
+        //var $destination = //get request for the name of the destination ID
+        $minPrice.text("Price: $" + data.Quotes[i].MinPrice);
+
+        // $results.text("Destination: " + $destination + " " + "Price: $"+
+        // $minPrice  + " ");
+
+        $("#results").append($destination).append($minPrice.append(
+          $("<div/>", {"class": "row s12 m3"})).append($("<button>", {"class": "btn", "href": $link, "text": "Book It"}))
         )
       }
     });
 });
-//see snippet in dev tools for making a sorted array of prices
-//ask about the branch
-//the redirect link question - can I just load that get request into a "book" link
