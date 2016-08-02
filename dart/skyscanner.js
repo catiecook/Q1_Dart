@@ -18,6 +18,11 @@ var $link = "http://partners.api.skyscanner.net/apiservices/referral/v1.0/US/USD
 
     $.get($url).then(function(data){
 
+        data.Quotes.sort(function(a, b){
+          console.log(a.MinPrice, b.MinPrice);
+        return a.MinPrice - b.MinPrice;
+        })
+
       for(var i=0; i<3; i++){
         //create new div with styles
         var $results = $("<div />", {
@@ -36,31 +41,24 @@ var $link = "http://partners.api.skyscanner.net/apiservices/referral/v1.0/US/USD
         var $destinationName = getIdName(data.Places, $destinationID);
         var $flightPrice = data.Quotes[i].MinPrice;
 
-        $destination.text($destinationName).css({'padding-top': '2vw', 'font-size': '2em'});
-
-        $minPrice.text("$"+$flightPrice).css({'font-size': '1em'});
+        $destination.text($destinationName).css({'padding-top': '2vw', 'font-size': '1.5em'});
+        $minPrice.text("$"+$flightPrice);
 
         $("#results").append($destination.append($minPrice.append(
-          $("<div/>", {"class": "row s12 m3"})).append($("<a>", {"class": "btn", "href": $link, "text": "Book It"}))
+          $("<div/>", {"class": "row s12 m3"})).append($("<a>", {"class": "btn", "href": $link, "target": '_blank', "text": "Book It"}))
+          )
         )
-      )
-      }
+      } //end of for loop
     });
 });
 
 
-// create funciton placeID(data, ID)
-
-//compare the data.Places[i].placeId and the ID i already found and returning when they are equal
 
 function getIdName(place, id){
   for(let i=0; i<place.length; i++){
-
     let currentPlace = place[i]
     if( currentPlace.PlaceId === id) {
       return currentPlace.Name;
     }
   }
 };
-
-//create variable = getIdName(data.Places, Id)
