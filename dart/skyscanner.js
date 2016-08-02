@@ -1,5 +1,5 @@
 
-$("form").submit(function(event){
+$("#getResults").click(function(event){
 event.preventDefault();
 
 var $priceMax = $("input:radio[name=priceMax]:checked").val();
@@ -12,8 +12,8 @@ var $returnDate = $("#returnDate").val(); //not required
 console.log($returnDate);
 
 var $url = "https://galvanize-cors-proxy.herokuapp.com/http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/US/USD/en-GB/" + $origin + "/anywhere/" + $departureDate + "/" + $returnDate + "?apiKey=ga774761977863345132258418049742&format=json";
-
-//link for the booking refferal
+console.log($url)
+//link for the booking refferal - so far its not working
 var $link = "http://partners.api.skyscanner.net/apiservices/referral/v1.0/US/USD/en-GB/" + $origin + "/anywhere/" + $departureDate + "/" + $returnDate + "?apiKey=ga77476197786334&format=json";
 
     $.get($url).then(function(data){
@@ -32,7 +32,11 @@ var $link = "http://partners.api.skyscanner.net/apiservices/referral/v1.0/US/USD
           "class": "row s12 m3 center"
         });
 
-        $destination.text("Destination: " + data.Quotes[i]["OutboundLeg"].DestinationId).css('padding-top', '2vw');
+        var $destinationID = data.Quotes[i]["OutboundLeg"].DestinationId;
+        var $destinationName = getIdName(data.Places, $destinationID);
+// console.log($destinationName);
+
+        $destination.text("Destination: " + $destinationName).css('padding-top', '2vw');
         //var $destination = //get request for the name of the destination ID
         $minPrice.text("Price: $" + data.Quotes[i].MinPrice);
 
@@ -40,8 +44,25 @@ var $link = "http://partners.api.skyscanner.net/apiservices/referral/v1.0/US/USD
         // $minPrice  + " ");
 
         $("#results").append($destination).append($minPrice.append(
-          $("<div/>", {"class": "row s12 m3"})).append($("<button>", {"class": "btn", "href": $link, "text": "Book It"}))
+          $("<div/>", {"class": "row s12 m3"})).append($("<a>", {"class": "btn", "href": $link, "text": "Book It"}))
         )
       }
     });
 });
+
+
+// create funciton placeID(data, ID)
+
+//compare the data.Places[i].placeId and the ID i already found and returning when they are equal
+
+function getIdName(place, id){
+  for(let i=0; i<place.length; i++){
+
+    let currentPlace = place[i]
+    if( currentPlace.PlaceId === id) {
+      return currentPlace.Name;
+    }
+  }
+};
+
+//create variable = getIdName(data.Places, Id)
