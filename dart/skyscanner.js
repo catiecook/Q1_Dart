@@ -49,22 +49,22 @@ var $link = "http://partners.api.skyscanner.net/apiservices/referral/v1.0/US/USD
         var $flightPrice = data.Quotes[i].MinPrice;
 
 
-        $destination.text($destinationName).css({'padding-top': '2vw', 'font-size': '1.5em', 'background-color': 'rgba(255, 255, 255, 0.8)', 'margin-right':'5%'});
-
-        $destination.text($destinationName).css({'padding-top': '2vw', 'font-size': '1.5em'});
+        $destination.text($destinationName).css({'padding-top': '1.2vw', 'font-size': '1.5em', 'background-color': 'rgba(255, 255, 255, 0.8)', 'margin-right':'5%'});
 
         $minPrice.text("$"+$flightPrice);
-        // $("body").css({'background-image': 'url(https://source.unsplash.com/1600x900/?nature,travel)'});
-
 
         $(".image").hide();
-        // $("form")
         $("#results").append($destination.append($minPrice.append(
-          $("<div/>", {"class": "row s12 m3"})).append($("<a>", {"class": "btn waves-effect waves-effect waves-light blue-grey", "href": $link, "target": '_blank', "text": "Book It"}))
+          $("<div/>", {"class": "row s12 m3"})).append($("<a>", {"class": "btn waves-effect waves-effect waves-light blue-grey", "href": $link, "target": '_blank', "text": ">>>"}))
           )
         )
       } //end of for loop
+      $("#origin").focus(function(){
+      $('#results').empty();
+      });
+
     });
+
     //reset the search on focus, remove stuff from #results div and set iamge div to $(".image").show();
 });
 
