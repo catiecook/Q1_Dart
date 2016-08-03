@@ -41,7 +41,7 @@ var $link = "http://partners.api.skyscanner.net/apiservices/referral/v1.0/US/USD
         var $destinationName = getIdName(data.Places, $destinationID);
         var $flightPrice = data.Quotes[i].MinPrice;
 
-        $destination.text($destinationName).css({'padding-top': '2vw', 'font-size': '1.5em'});
+        $destination.text($destinationName).css({'padding-top': '2vw', 'font-size': '1.5em', 'background-color': 'lightgrey'});
         $minPrice.text("$"+$flightPrice);
 
         $("#results").append($destination.append($minPrice.append(
@@ -51,8 +51,6 @@ var $link = "http://partners.api.skyscanner.net/apiservices/referral/v1.0/US/USD
       } //end of for loop
     });
 });
-
-
 
 function getIdName(place, id){
   for(let i=0; i<place.length; i++){
