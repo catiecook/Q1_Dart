@@ -55,7 +55,7 @@ var $link = "http://partners.api.skyscanner.net/apiservices/referral/v1.0/US/USD
           "class": "row s12 m3 center"
         });
 
-        var $destinationID = data.Quotes[i]["OutboundLeg"]["DestinationId"];
+        var $destinationID = data.Quotes[i].OutboundLeg.DestinationId;
         var $destinationName = getIdName(data.Places, $destinationID);
         var $flightPrice = data.Quotes[i].MinPrice;
 
