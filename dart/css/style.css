@@ -7,30 +7,62 @@
  */
 
 .icon-block {
-  padding: 0 15px;
+  /*padding: 0 15px;*/
+
 }
 .icon-block .material-icons {
 	font-size: inherit;
 }
 
-nav {
-  background-color: darkgrey;
-}
 
 label {
   padding-right: 5px;
 }
 
-
 #logo-container img {
   max-width: 50%;
-  padding-top: 8%;
+  padding-top: 1%;
 }
 
 nav .nav-wrapper {
+  padding-top: .3%;
   margin-left: 3%;
 
 }
 nav .nav-wrapper ul{
-margin-right: -32%;
+  margin-right: -32%;
+}
+
+.row {
+  padding-top: -3%;
+}
+
+#index{
+  background-image: url(https://source.unsplash.com/2100x1200/?nature);
+}
+
+.card-panel h4 {
+  font-variant: small-caps;
+  font-weight: bold;
+  font-size: 3em;
+  margin-top: -3%;
+}
+
+#results {
+  box-shadow: none;
+}
+
+#logo-container{
+  color: black;
+  font-variant: small-caps;
+  font-weight: bold;
+}
+
+.hide-on-med-and-down {
+  font-variant: small-caps;
+  font-size: 2em;
+}
+
+#formPage {
+  background-image: url(https://source.unsplash.com/1600x900/?nature,travel);
 }

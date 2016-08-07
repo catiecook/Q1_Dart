@@ -1,15 +1,26 @@
 
+
+//start on click
+
 $("#getResults").click(function(event){
 event.preventDefault();
 
-var $priceMax = $("input:radio[name=priceMax]:checked").val();
-console.log($priceMax);
-var $origin = $("#origin").val();
-console.log($origin);
+
+var $origin= $("#origin").val();
+$origin = $origin.replace(/\(|\)/g,'').split("");
+var $realOrigin=[];
+for(let i=$origin.length-3; i<$origin.length; i++){
+  $realOrigin.push($origin[i])
+}
+$realOrigin = $realOrigin.join('');
+console.log($realOrigin)
+// console.log($origin);
+
 var $departureDate = $("#departureDate").val();
 console.log($departureDate);
 var $returnDate = $("#returnDate").val();
 console.log($returnDate);
+
 
 $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
@@ -17,14 +28,14 @@ $('.datepicker').pickadate({
     format: 'yyyy/mm/dd'
   });
 
-var $url = "https://galvanize-cors-proxy.herokuapp.com/http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/US/USD/en-GB/" + $origin + "/anywhere/" + $departureDate + "/" + $returnDate + "?apiKey=ga774761977863345132258418049742&format=json";
+
+var $url = "https://galvanize-cors-proxy.herokuapp.com/http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/US/USD/en-GB/" + $realOrigin + "/anywhere/" + $departureDate + "/" + $returnDate + "?apiKey=ga774761977863345132258418049742&format=json";
 console.log($url)
 //link for the booking refferal - so far its not working
-var $link = "http://partners.api.skyscanner.net/apiservices/referral/v1.0/US/USD/en-GB/" + $origin + "/anywhere/" + $departureDate + "/" + $returnDate + "?apiKey=ga77476197786334&format=json";
-
-
+var $link = "http://partners.api.skyscanner.net/apiservices/referral/v1.0/US/USD/en-GB/" + $realOrigin + "/anywhere/" + $departureDate + "/" + $returnDate + "?apiKey=ga77476197786334&format=json";
 
     $.get($url).then(function(data){
+      console.log(data);
         data.Quotes.sort(function(a, b){
           // console.log(a.MinPrice, b.MinPrice);
         return a.MinPrice - b.MinPrice;
@@ -44,10 +55,9 @@ var $link = "http://partners.api.skyscanner.net/apiservices/referral/v1.0/US/USD
           "class": "row s12 m3 center"
         });
 
-        var $destinationID = data.Quotes[i]["OutboundLeg"].DestinationId;
+        var $destinationID = data.Quotes[i].OutboundLeg.DestinationId;
         var $destinationName = getIdName(data.Places, $destinationID);
         var $flightPrice = data.Quotes[i].MinPrice;
-
 
         $destination.text($destinationName).css({'padding-top': '1.2vw', 'font-size': '1.5em', 'background-color': 'rgba(255, 255, 255, 0.8)', 'margin-right':'5%'});
 
@@ -55,19 +65,17 @@ var $link = "http://partners.api.skyscanner.net/apiservices/referral/v1.0/US/USD
 
         $(".image").hide();
         $("#results").append($destination.append($minPrice.append(
-          $("<div/>", {"class": "row s12 m3"})).append($("<a>", {"class": "btn waves-effect waves-effect waves-light blue-grey", "href": $link, "target": '_blank', "text": ">>>"}))
+            $("<div/>", {"class": "row s12 m3"})).append($("<a>", {"class": "btn waves-effect waves-effect waves-light blue-grey", "href": $link, "target": '_blank', "text": ">>>"}))
           )
         )
       } //end of for loop
-      $("#origin").focus(function(){
-      $('#results').empty();
-      });
 
+      $("#departureDate").focus(function(){
+      $('#results').empty();
     });
 
-    //reset the search on focus, remove stuff from #results div and set iamge div to $(".image").show();
+  });
 });
-
 
 
 function getIdName(place, id){
