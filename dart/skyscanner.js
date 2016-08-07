@@ -28,6 +28,7 @@ $('.datepicker').pickadate({
     format: 'yyyy-mm-dd'
   });
 
+
   if ($departureDate > $returnDate) {
     console.log("the dates are not valid");
   }
