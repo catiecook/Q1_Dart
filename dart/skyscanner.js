@@ -14,13 +14,13 @@ for(let i=$origin.length-3; i<$origin.length; i++){
 }
 $realOrigin = $realOrigin.join('');
 console.log($realOrigin)
-// console.log($origin);
 
 var $departureDate = $("#departureDate").val();
 console.log($departureDate);
 var $returnDate = $("#returnDate").val();
 console.log($returnDate);
 
+// Handle dates
 
 $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
@@ -28,11 +28,15 @@ $('.datepicker').pickadate({
     format: 'yyyy-mm-dd'
   });
 
+// load username to top right nav bar
+if ($departureDate > $returnDate) {
+  console.log("the dates are not valid");
+}
 
-  if ($departureDate > $returnDate) {
-    console.log("the dates are not valid");
-  }
+var $userName = $("#name").val();
+  console.log($userName);
 
+$("#userName").append($userName);
 
 var $url = "https://galvanize-cors-proxy.herokuapp.com/http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/US/USD/en-GB/" + $realOrigin + "/anywhere/" + $departureDate + "/" + $returnDate + "?apiKey=ga774761977863345132258418049742&format=json";
 console.log($url)
@@ -64,7 +68,7 @@ var $link = "http://partners.api.skyscanner.net/apiservices/referral/v1.0/US/USD
         var $destinationName = getIdName(data.Places, $destinationID);
         var $flightPrice = data.Quotes[i].MinPrice;
 
-        $destination.text($destinationName).css({'padding-top': '1.2vw', 'font-size': '1.5em', 'background-color': 'rgba(255, 255, 255, 0.8)', 'margin-right':'5%'});
+        $destination.text($destinationName).css({'padding-top': '1.2vw', 'font-size': '1.5em', 'background-color': 'rgba(255, 255, 255, 0.9)', 'margin-right':'5%'});
 
         $minPrice.text("$"+$flightPrice);
 
