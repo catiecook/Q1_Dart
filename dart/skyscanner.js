@@ -28,6 +28,10 @@ $('.datepicker').pickadate({
     format: 'yyyy-mm-dd'
   });
 
+  if ($departureDate > $returnDate) {
+    console.log("the dates are not valid");
+  }
+
 
 var $url = "https://galvanize-cors-proxy.herokuapp.com/http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/US/USD/en-GB/" + $realOrigin + "/anywhere/" + $departureDate + "/" + $returnDate + "?apiKey=ga774761977863345132258418049742&format=json";
 console.log($url)
