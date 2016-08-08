@@ -28,15 +28,16 @@ $('.datepicker').pickadate({
     format: 'yyyy-mm-dd'
   });
 
-// load username to top right nav bar
+//if dates are invalid
 if ($departureDate > $returnDate) {
   console.log("the dates are not valid");
 }
 
+// load username to top right nav bar
 var $userName = $("#name").val();
   console.log($userName);
 
-$("#userName").append($userName);
+$("#userName").text("Hey, " + $userName).css({"font-size": ".5em", "color": "black", "font-variant": "none"});
 
 var $url = "https://galvanize-cors-proxy.herokuapp.com/http://partners.api.skyscanner.net/apiservices/browseroutes/v1.0/US/USD/en-GB/" + $realOrigin + "/anywhere/" + $departureDate + "/" + $returnDate + "?apiKey=ga774761977863345132258418049742&format=json";
 console.log($url)
