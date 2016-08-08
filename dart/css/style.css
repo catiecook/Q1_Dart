@@ -25,7 +25,6 @@ label {
 }
 
 nav .nav-wrapper {
-  padding-top: .3%;
   margin-left: 3%;
 
 }
@@ -48,6 +47,10 @@ nav .nav-wrapper ul{
   margin-top: -3%;
 }
 
+.card-panel{
+  margin-top: 0;
+}
+
 #results {
   box-shadow: none;
 }
@@ -59,10 +62,10 @@ nav .nav-wrapper ul{
 }
 
 .hide-on-med-and-down {
-  font-variant: small-caps;
+  /*font-variant: small-caps;*/
   font-size: 2em;
 }
 
 #formPage {
-  background-image: url(https://source.unsplash.com/1600x900/?nature,travel);
+  background-image: url(https://source.unsplash.com/2100x1200/?nature);
 }
